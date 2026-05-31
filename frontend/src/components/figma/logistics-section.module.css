@@ -404,29 +404,35 @@
   .orbit { display: none; }
   .tag { display: none; }
 
-  /* Plant animation — 332 × 263 within a 375-frame.
-     The stage is 325 wide (375 − 2×25). Plant 332 overflows the
-     stage by 7px total (3.5px each side) → ends up flush at
-     ~21.5px from the section edge as in Figma. On narrower
-     phones it shrinks proportionally. */
+  /* Plant animation — needs to be scaled UP heavily because the source
+     MP4 has a wide "frame" of dark-green padding around the actual
+     bright bubble (visible bubble ≈ 40% of the video frame width).
+     To make the visible bubble land at ~25px from left / ~20px from
+     right of a 375 viewport (≈330px wide visible sphere), the video
+     element must be ~2.4× wider than that — ≈800px. The section
+     itself has `overflow: hidden` so any horizontal overflow is
+     clipped cleanly at the section edges. Negative vertical margins
+     pull the next/previous flex children inwards so the tall empty
+     padding above/below the bubble in the source MP4 doesn't add
+     dead-space to the layout. */
   .plant {
     position: static;
-    width: 332px;
-    height: 263px;
-    max-width: calc(100% + 14px);
-    margin: 6px auto;
+    width: 800px;
+    height: 634px;
+    max-width: none;
+    margin: -70px auto -70px;
     object-fit: contain;
     order: 3;
     align-self: center;
     -webkit-mask-image: radial-gradient(
       circle at 50% 50%,
-      #000 60%,
-      rgba(0, 0, 0, 0) 95%
+      #000 55%,
+      rgba(0, 0, 0, 0) 92%
     );
     mask-image: radial-gradient(
       circle at 50% 50%,
-      #000 60%,
-      rgba(0, 0, 0, 0) 95%
+      #000 55%,
+      rgba(0, 0, 0, 0) 92%
     );
   }
 
