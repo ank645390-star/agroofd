@@ -1,0 +1,18 @@
+[
+  {
+    "content": "Add active search with suggestions on /blog (like /catalog)",
+    "status": "completed"
+  },
+  {
+    "content": "Remove duplicate clear-button (native input[type=search] X)",
+    "status": "completed"
+  },
+  {
+    "content": "Make blog category chips horizontal-scroll on mobile (no wrap)",
+    "status": "completed"
+  },
+  {
+    "content": "Visual verification + git commit",
+    "status": "completed"
+  }
+]
