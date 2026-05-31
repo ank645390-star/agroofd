@@ -335,15 +335,25 @@
        2 cards bottom-RIGHT (icon RIGHT, text-align RIGHT).
    ========================================================= */
 @media screen and (max-width: 768px) {
+  /* Figma frame: 375 × 928 (dark green). We center the design on
+     any phone width — content max-width pinned to 375. Side
+     padding inside the frame is ~25px (items live with a 25px
+     inset from each edge). Animation slightly overflows that
+     inset to land at exactly 332px wide on a 375 frame. */
   .section {
-    padding: 48px 16px 56px;
+    padding: 48px 25px 56px;
     min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* ---- Heading: inline-wrap "ЛОГІСТИКА ЖИВИХ" + "РІШЕНЬ" ---- */
   .heading {
     display: block;
     width: 100%;
+    max-width: 325px;
+    margin: 0 auto;
     height: auto;
     flex-direction: row;
     text-align: center;
@@ -383,6 +393,8 @@
   /* ---- Stage: vertical stack with reordered children ---- */
   .stage {
     width: 100%;
+    max-width: 325px;
+    margin: 0 auto;
     min-height: 0;
     margin-top: 28px;
     flex-direction: column;
@@ -392,18 +404,20 @@
   .orbit { display: none; }
   .tag { display: none; }
 
-  /* Plant animation — exact size 420 × 333 per Figma.
-     On viewports narrower than 420 we allow slight horizontal
-     overflow (negative side margins) so the bubble visually
-     extends across the entire screen. */
+  /* Plant animation — 332 × 263 within a 375-frame.
+     The stage is 325 wide (375 − 2×25). Plant 332 overflows the
+     stage by 7px total (3.5px each side) → ends up flush at
+     ~21.5px from the section edge as in Figma. On narrower
+     phones it shrinks proportionally. */
   .plant {
     position: static;
-    width: 420px;
-    height: 333px;
-    max-width: none;
-    margin: 4px auto 4px;
+    width: 332px;
+    height: 263px;
+    max-width: calc(100% + 14px);
+    margin: 6px auto;
     object-fit: contain;
     order: 3;
+    align-self: center;
     -webkit-mask-image: radial-gradient(
       circle at 50% 50%,
       #000 60%,
@@ -500,19 +514,24 @@
   }
 }
 
-/* Narrow phones (<= 380px) — slightly tighter outer padding so the
-   420×333 animation can still bleed gently. */
+/* Narrow phones (<= 380px) — keep the 375-frame layout consistent,
+   just slightly tighten the side padding so the 332 animation still
+   fits comfortably. */
 @media screen and (max-width: 380px) {
   .section {
-    padding: 44px 12px 52px;
+    padding: 44px 20px 52px;
+  }
+  .heading,
+  .stage {
+    max-width: 100%;
   }
   .feature.topLeft,
   .feature.bottomLeft {
-    padding-right: 24px;
+    padding-right: 28px;
   }
   .feature.topRight,
   .feature.bottomRight {
-    padding-left: 24px;
+    padding-left: 28px;
   }
 }
 
