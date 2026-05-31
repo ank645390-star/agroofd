@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="664" height="465" viewBox="0 0 664 465" fill="none" preserveAspectRatio="xMidYMid meet">
+<path d="M326.8 4.0H337.2M314.0 14.0H350.0M294.7 29.1H369.3M269.3 48.8H394.7M238.3 72.9H425.7M202.0 101.2H462.0M160.4 133.5H503.6M113.8 169.8H550.2M62.2 209.9H601.8M5.9 253.8H658.1M-55.2 301.3H719.2M-120.8 352.3H784.8M-191.0 406.9H855.0M-265.6 465.0H929.6M332.0 0L-199.2 465M332.0 0L-150.9 465M332.0 0L-102.6 465M332.0 0L-54.3 465M332.0 0L-6.0 465M332.0 0L42.3 465M332.0 0L90.5 465M332.0 0L138.8 465M332.0 0L187.1 465M332.0 0L235.4 465M332.0 0L283.7 465M332.0 0L332.0 465M332.0 0L380.3 465M332.0 0L428.6 465M332.0 0L476.9 465M332.0 0L525.2 465M332.0 0L573.5 465M332.0 0L621.7 465M332.0 0L670.0 465M332.0 0L718.3 465M332.0 0L766.6 465M332.0 0L814.9 465M332.0 0L863.2 465" stroke="url(#grad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+<defs>
+<radialGradient id="grad" cx="0" cy="0" r="1" gradientTransform="matrix(0 168.557 -239.73 0 332.0 255.75000000000003)" gradientUnits="userSpaceOnUse">
+<stop offset="0.243" stop-color="#1B4332"/>
+<stop offset="0.76" stop-color="#1B4332" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
