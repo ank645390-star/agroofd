@@ -252,11 +252,13 @@
     line-height: 1.2;
   }
 
-  /* Decorative perspective grid (mobile only). Uses an external SVG
-     with the exact "receding floor" pattern + built-in radial
-     gradient stroke. The SVG (664×465) is wider than mobile viewport
-     on purpose so its outer columns/rows extend off-screen for the
-     wraparound depth effect — `.section { overflow: hidden }` clips. */
+  /* Decorative perspective grid (mobile only). The SVG file shows a
+     "floor" plane receding into a vanishing point at its TOP edge.
+     We rotate the rendered element 90° clockwise so the vanishing
+     point sits at the RIGHT edge → cells visually flip from
+     wide-short ("tiles facing user") to tall-narrow ("planks running
+     away from user"), matching the design.
+     Cache-bust the asset URL so browsers reload the regenerated SVG. */
   .gridBg {
     position: absolute;
     inset: 0;
@@ -269,10 +271,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center center;
     width: 664px;
     height: 465px;
-    background-image: url("/trust-grid-pattern.svg");
+    background-image: url("/trust-grid-pattern.svg?v=3");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 664px 465px;

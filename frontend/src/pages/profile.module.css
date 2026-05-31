@@ -532,6 +532,29 @@
   gap: 8px;
   margin-bottom: 4px;
 }
+
+/* Mobile (≤768px): single-row horizontal scroll, hidden scrollbar, no wrap.
+   Chips overflow the viewport and remain swipable side-to-side. */
+@media screen and (max-width: 768px) {
+  .orderFilters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    /* Pull-out to viewport edges so first chip sits flush with the
+       page's 20px gutter while still allowing a visual scroll-affordance. */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 4px 20px 8px;
+    scrollbar-width: none;
+  }
+  .orderFilters::-webkit-scrollbar { display: none; }
+  .orderFilterChip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
 .orderFilterChip {
   display: inline-flex;
   align-items: center;
