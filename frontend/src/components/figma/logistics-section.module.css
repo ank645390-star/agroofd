@@ -405,25 +405,22 @@
   .tag { display: none; }
 
   /* Plant animation — viewport-driven.
-     Source MP4 has wide dark-green padding around the actual bright
-     bubble (visible bubble ≈ 40% of the video frame width). To make
-     the visible bubble end up exactly (viewport − 50px) wide
-     (= 25px inset on each side), the .plant element must be
-     2.5 × that target. The element gets centered with
-     `left: 50%; translateX(-50%)` because plain margin:auto fails
-     once the element is wider than its parent container.
-     `.section { overflow: hidden }` clips the horizontal overflow,
-     so this is safe. Negative vertical margins eat the empty
-     padding the source MP4 has above/below the bubble. */
+     Source MP4 has wide dark-green padding around the bright bubble
+     (visible bubble ≈ 40% of the video frame width). We size the
+     element so the visible bubble lands ~45px from each viewport
+     edge (i.e. ~285px wide on a 375 frame). Strong negative vertical
+     margins eat the empty top/bottom padding the source MP4 carries
+     above/below the bubble, so the text blocks above and below sit
+     within ~30px from the visible sphere. */
   .plant {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: calc((100vw - 50px) * 2.5);
-    max-width: 950px;
+    width: calc((100vw - 50px) * 2.2);
+    max-width: 820px;
     aspect-ratio: 800 / 634;
     height: auto;
-    margin: -60px 0;
+    margin: -110px 0;
     object-fit: contain;
     order: 3;
     align-self: stretch;
@@ -489,11 +486,13 @@
     align-items: flex-end;
     text-align: right;
   }
-  /* Let text wrap naturally — drop the hard <br/> line breaks
-     forced by the design for desktop widths. */
+  /* Keep the designer-forced line breaks visible on mobile too —
+     the JSX has `<br />` between, e.g. "cold-chain" and "на" without
+     a literal space, so hiding the <br> would collapse those into
+     one merged word ("cold-chainна"). */
   .featureLabelTop br,
   .featureLabelBottom br {
-    display: none;
+    display: inline;
   }
 
   /* Typography per Figma spec */
