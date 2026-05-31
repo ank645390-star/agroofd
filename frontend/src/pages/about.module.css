@@ -1372,47 +1372,90 @@
     padding: 48px 20px 48px;
   }
   .historyInner {
-    gap: 24px;
+    gap: 0;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
   }
   .historyHeader {
-    gap: 8px;
+    gap: 4px;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 40px;
   }
   .historyTitle {
-    font-size: 44px;
-    line-height: 1.05;
-    letter-spacing: -0.5px;
+    font-family: "Commissioner", system-ui, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #2c2c27;
     white-space: normal;
     width: 100%;
   }
   .historySubtitle {
-    font-size: 15px;
-    line-height: 1.4;
-    white-space: normal;
+    font-family: "Commissioner", system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: -1px;
+    text-transform: uppercase;
     color: #93928c;
+    white-space: normal;
     width: 100%;
-    padding-right: 8px;
+    padding-right: 0;
   }
+  /* Standardised card geometry — fixed image height (221) + clamped
+     description (3 lines × 14px) keeps every period card at exactly
+     the same outer size, so navigating periods doesn't "jump". */
   .historyCard {
-    padding: 16px;
-    gap: 14px;
+    align-self: stretch;
+    padding: 16px 16px 16px 16px;
+    gap: 20px;
     border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid #f0efe9;
+    box-shadow: 0 4px 24px rgba(44, 44, 39, 0.04);
+    box-sizing: border-box;
+    margin-bottom: 20px;
   }
   .historyCardImage {
-    height: 220px;
-    border-radius: 12px;
+    width: 100%;
+    height: 221px;
+    border-radius: 8px;
     object-fit: cover;
+    display: block;
+    flex-shrink: 0;
   }
-  .historyCardText { padding: 0; gap: 8px; }
+  .historyCardText {
+    padding: 0;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+  }
   .historyCardTitle {
-    font-size: 22px;
-    line-height: 1.2;
+    margin: 0;
+    font-family: "Golos Text", system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+    color: #2c2c27;
   }
   .historyCardDesc {
-    font-size: 15px;
-    line-height: 1.45;
+    margin: 0;
+    font-family: "Golos Text", system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #2c2c27;
+    /* Clamp to 3 lines so every period card has identical height */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   /* Hide horizontal timeline row on mobile */
   .timelineWrap { display: none; }
@@ -1421,8 +1464,31 @@
   .historyArrows {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
-    padding: 8px 0 0;
+    padding: 0;
+  }
+  /* Round, uniform 112×112 icon container for the active-period
+     thumbnail at the centre of the carousel arrows row. Each
+     year-icon webp gets cropped via object-fit: cover so all
+     six periods render at exactly the same circular size. */
+  .historyArrowsCenter {
+    gap: 8px;
+  }
+  .historyArrowsIcon {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background-color: #efeee8;
+    object-fit: cover;
+    display: block;
+  }
+  .historyArrowsYear {
+    font-family: "Golos Text", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 120%;
+    color: #2c2c27;
   }
 
   /* 7) TRUST */
@@ -1454,7 +1520,11 @@
   .heroTitle    { font-size: 26px; }
   .heroSubtitle { font-size: 20px; }
   .missionTitle { font-size: 22px; }
-  .historyTitle { font-size: 38px; }
   .labTitle     { font-size: 28px; }
   .numberCardTitle { font-size: 48px; }
+  /* Keep history title/subtitle ratio per Figma even on tiny phones,
+     just nudge font-size slightly down so the 24px subtitle still
+     fits on a 320px screen without forced wrap. */
+  .historyTitle    { font-size: 28px; }
+  .historySubtitle { font-size: 20px; }
 }
