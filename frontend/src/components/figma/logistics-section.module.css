@@ -328,84 +328,191 @@
 
 /* =========================================================
    MOBILE (≤ 768px) — Logistics section
-   Convert from positioned-on-orbit to vertical stack.
+   Concept per Figma:
+     • Title: "ЛОГІСТИКА ЖИВИХ РІШЕНЬ" — inline wrap, Commissioner.
+     • Layout: 2 cards top-LEFT (icon LEFT, text-align LEFT),
+       large plant animation centered (420×333),
+       2 cards bottom-RIGHT (icon RIGHT, text-align RIGHT).
    ========================================================= */
 @media screen and (max-width: 768px) {
   .section {
-    padding: 56px 20px 64px;
+    padding: 48px 16px 56px;
     min-height: 0;
   }
+
+  /* ---- Heading: inline-wrap "ЛОГІСТИКА ЖИВИХ" + "РІШЕНЬ" ---- */
   .heading {
+    display: block;
     width: 100%;
     height: auto;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
     white-space: normal;
-    font-size: 30px;
-    line-height: 1.15;
-    letter-spacing: -0.4px;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+    font-family: var(--font-commissioner);
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    align-items: initial;
+    justify-content: initial;
+    gap: 0;
   }
-  .headingGap { display: none; }
-  .headingPrimary { font-size: 32px; line-height: 1.1; }
+  .headingPrimary {
+    display: inline;
+    font-family: var(--font-commissioner);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -1px;
+    color: var(--text-cream, #f9f7f2);
+  }
+  .headingGap {
+    display: inline;
+    width: auto;
+  }
   .headingSecondary {
-    font-size: 26px;
-    line-height: 1.18;
+    display: inline;
+    font-family: var(--font-commissioner);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: -1px;
+    color: var(--text-grey, #93928c);
   }
+
+  /* ---- Stage: vertical stack with reordered children ---- */
   .stage {
     width: 100%;
     min-height: 0;
-    margin-top: 24px;
+    margin-top: 28px;
     flex-direction: column;
-    gap: 24px;
-    align-items: center;
+    gap: 22px;
+    align-items: stretch;
   }
-  /* Hide decorative orbit on mobile to avoid overflow */
   .orbit { display: none; }
+  .tag { display: none; }
+
+  /* Plant animation — exact size 420 × 333 per Figma.
+     On viewports narrower than 420 we allow slight horizontal
+     overflow (negative side margins) so the bubble visually
+     extends across the entire screen. */
   .plant {
     position: static;
-    width: 320px;
-    height: 320px;
-    max-width: 100%;
-    margin: 0 auto;
-    -webkit-mask-image: none;
-    mask-image: none;
+    width: 420px;
+    height: 333px;
+    max-width: none;
+    margin: 4px auto 4px;
+    object-fit: contain;
+    order: 3;
+    -webkit-mask-image: radial-gradient(
+      circle at 50% 50%,
+      #000 60%,
+      rgba(0, 0, 0, 0) 95%
+    );
+    mask-image: radial-gradient(
+      circle at 50% 50%,
+      #000 60%,
+      rgba(0, 0, 0, 0) 95%
+    );
   }
-  /* Feature blocks become normal flow, full width */
+
+  /* Feature blocks: full-width, with `order` to split top/bottom */
   .feature {
     position: static !important;
     width: 100% !important;
     min-height: 0;
     margin: 0;
   }
-  .feature.topLeft, .feature.topRight,
-  .feature.bottomLeft, .feature.bottomRight {
-    top: auto; left: auto; right: auto; bottom: auto;
+  .feature.topLeft,
+  .feature.topRight,
+  .feature.bottomLeft,
+  .feature.bottomRight {
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
   }
+  /* Top group (left side, icon LEFT) */
+  .feature.topLeft { order: 1; }        /* Цифрові датчики (clipboard) */
+  .feature.bottomLeft { order: 2; }     /* Контрольоване транспортування (truck) */
+  /* plant order: 3 (set above) */
+  /* Bottom group (right side, icon RIGHT) */
+  .feature.bottomRight { order: 4; }    /* Паспорт зберігання (thermometer) */
+  .feature.topRight { order: 5; }       /* Холодильні камери (nodes) */
+
+  /* Slight inset from the opposite edge so the block visually
+     "looks" to its side, while remaining accessible at full row width. */
+  .feature.topLeft,
+  .feature.bottomLeft {
+    padding-right: 36px;
+  }
+  .feature.topRight,
+  .feature.bottomRight {
+    padding-left: 36px;
+  }
+
   .featureRow {
     align-items: center;
     gap: 12px;
-    padding: 4px 0;
+    padding: 0;
   }
-  .featureText { gap: 4px; }
-  .featureText.alignEnd { align-items: flex-start; text-align: left; }
+  .featureText {
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+  }
+  /* Restore right-alignment for right-side items on mobile */
+  .featureText.alignEnd {
+    align-items: flex-end;
+    text-align: right;
+  }
+  /* Let text wrap naturally — drop the hard <br/> line breaks
+     forced by the design for desktop widths. */
+  .featureLabelTop br,
+  .featureLabelBottom br {
+    display: none;
+  }
+
+  /* Typography per Figma spec */
   .featureLabelTop {
+    font-family: "Golos Text", var(--font-golos-text);
     font-size: 14px;
-    line-height: 1.3;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0;
+    color: var(--text-cream, #f9f7f2);
+    opacity: 1;
   }
   .featureLabelBottom {
+    font-family: "Golos Text", var(--font-golos-text);
     font-size: 18px;
-    line-height: 1.2;
-    letter-spacing: -0.2px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0;
+    color: var(--text-cream, #f9f7f2);
   }
+
+  /* Icons stay readable but compact on mobile */
   .featureIcon,
   .featureIconImg {
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
   }
-  /* Hide floating tag chips on the orbit — they don't make sense without the orbit */
-  .tag { display: none; }
+}
+
+/* Narrow phones (<= 380px) — slightly tighter outer padding so the
+   420×333 animation can still bleed gently. */
+@media screen and (max-width: 380px) {
+  .section {
+    padding: 44px 12px 52px;
+  }
+  .feature.topLeft,
+  .feature.bottomLeft {
+    padding-right: 24px;
+  }
+  .feature.topRight,
+  .feature.bottomRight {
+    padding-left: 24px;
+  }
 }
 
